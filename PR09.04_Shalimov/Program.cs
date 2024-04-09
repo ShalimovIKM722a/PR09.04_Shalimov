@@ -63,9 +63,7 @@ class MedCard:Patient
             d+= diagnosis + " , ";
         }
 
-
         Console.WriteLine("Діагнози: " + d);
-        
     }
 }
 
