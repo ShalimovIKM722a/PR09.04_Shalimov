@@ -1,6 +1,35 @@
 ﻿
-MedCard Medcard1 = new MedCard("Petro", "28.09"  , 106252);
-Medcard1.ShowMedCard();
+
+
+
+class MedCard
+{
+    List<string> medCard;
+   
+    public void AddDiagnoses(List<string> medCard)
+    {
+        int n;
+        Console.WriteLine("Введіть кількість діагнозів");
+        n=int.Parse(Console.ReadLine());
+
+        for(int i = 0; i < n; i++)
+        {
+            Console.WriteLine("Введіть " + (i+1)+ "діагноз");
+            medCard.Add(Console.ReadLine());
+        }
+    }
+
+    public string ShowDiagnoses(List<string> medCard)
+    {
+        string str="Діагнози: ";
+        foreach ( var diagnos  in medCard)
+        {
+            str += diagnos;
+        }
+        return str;
+    }
+
+}
 
 
 class Patient
@@ -11,6 +40,7 @@ class Patient
     public string Name { get;  }
     public string Date_of_birth { get; set; }
     public uint Insurance_number { get; set; }
+    public MedCard medCard = new MedCard();
 
     public Patient(string name, string date_of_birth, uint insurance_number)
     {
@@ -21,7 +51,7 @@ class Patient
 
     public virtual void WriteDiagnosis(string diagnosis)
     {
-       
+        
     }
 
     public virtual void ShowMedCard()
@@ -45,25 +75,4 @@ class Doctor : Patient
     }
 }
 
-class MedCard:Patient
-{
-    public List<string> Diagnoses { get; set; }
-
-    public MedCard(string name, string date_of_birth, uint insurance_number) : base(name, date_of_birth, insurance_number)
-    {
-        Diagnoses = new List<string>();
-    }
-
-    public override void ShowMedCard() {
-
-        string d = "";
-
-        foreach (var diagnosis in Diagnoses)
-        {
-            d+= diagnosis + " , ";
-        }
-
-        Console.WriteLine("Діагнози: " + d);
-    }
-}
 
